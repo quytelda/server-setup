@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Set timezone
+      tags: timezone
+      community.general.timezone:
+        name: America/Los_Angeles
+
+    - name: Disable cockpit
+      tags: disable_cockpit
+      ansible.builtin.systemd:
+        name: cockpit.socket
+        enabled: no
+        state: stopped
